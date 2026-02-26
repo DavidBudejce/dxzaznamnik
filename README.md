@@ -1,2 +1,2 @@
-# dxzaznamnik
-Hledač lokátorů a záznamník rádiového spojení
+# DxZaznamnik
+Hledač lokátorů a záznamník rádiového spojení, vhodný třeba pro navazování spojejí s PMR.
