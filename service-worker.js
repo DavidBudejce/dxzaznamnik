@@ -1,9 +1,10 @@
-const CACHE_NAME = "dxzaznamnik-v1";
+const CACHE_NAME = "DxZaznamnik-v1";
+
 const FILES_TO_CACHE = [
-  "/DxZaznamnik.html",
-  "/manifest.json",
-  "/icon-192.png",
-  "/icon-512.png"
+  "./index.html",
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
