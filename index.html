@@ -96,6 +96,15 @@ button{font-size:1.1em;padding:6px 10px;}
   <span id="stickyQTHLabel">QTH: –</span>
 </div>
 
+<header>
+  <h1>DxZáznamník</h1>
+</header>
+
+<button id="installBtn" style="display:none; margin: 10px;">
+  Instalovat aplikaci
+</button>
+
+
 <h2>Hledač lokátorů a záznamník rádiového spojení</h2>
 
 <div id="map"></div>
@@ -152,6 +161,33 @@ button{font-size:1.1em;padding:6px 10px;}
 </div>
 
 <script>
+
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+
+  if (outcome === 'accepted') {
+    console.log('Uživatel nainstaloval aplikaci');
+  } else {
+    console.log('Uživatel instalaci zrušil');
+  }
+
+  deferredPrompt = null;
+  installBtn.style.display = 'none';
+});
+
+
 function latLonToLocator(lat,lon){
   lon+=180;lat+=90;let A="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let fL=Math.floor(lon/20),fB=Math.floor(lat/10);
